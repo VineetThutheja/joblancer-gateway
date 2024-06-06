@@ -59,7 +59,7 @@ export class GatewayServer {
   private startElasticSearch(): void {
     elasticSearch.checkConnection();
   }
-  private routesMiddleware(app: Application): void{
+  private routesMiddleware(app: Application): void {
     appRoutes(app);
   }
   private errorHandler(app: Application): void {
@@ -78,23 +78,23 @@ export class GatewayServer {
     });
   }
 
-  private async startServer(app: Application): Promise<void>{
+  private async startServer(app: Application): Promise<void> {
     try {
-        const httpServer: http.Server = new http.Server(app);
-        this.startHttpServer(httpServer);
+      const httpServer: http.Server = new http.Server(app);
+      this.startHttpServer(httpServer);
     } catch (error) {
-        log.log('error','Gateway service startServer() error method:', error);
+      log.log('error', 'Gateway service startServer() error method:', error);
     }
   }
 
-  private async startHttpServer(httpServer: http.Server): Promise<void>{
+  private async startHttpServer(httpServer: http.Server): Promise<void> {
     try {
-        log.info(`Gateway server has started with process id ${process.pid}`);
-        httpServer.listen(SERVER_PORT, () => {
-          log.info(`Gateway server running on port ${SERVER_PORT}`);
-        });
-      } catch (error) {
-        log.log('error', 'GatewayService startServer() error method:', error);
-      }
+      log.info(`Gateway server has started with process id ${process.pid}`);
+      httpServer.listen(SERVER_PORT, () => {
+        log.info(`Gateway server running on port ${SERVER_PORT}`);
+      });
+    } catch (error) {
+      log.log('error', 'GatewayService startServer() error method:', error);
+    }
   }
 }
